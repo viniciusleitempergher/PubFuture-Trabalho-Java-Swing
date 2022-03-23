@@ -18,6 +18,10 @@ public class Aplicacao {
 		this.meses = meses;
 	}
 	
+	/**
+	 * Faz os cálculos da poupança, CDB, LCI e dias úteis;
+	 * Abre a tela final passando os resultados dos cálculos
+	 */
 	public void calcular() {
 		int diasUteis = diasUteisAte(dataTermino);
 		
@@ -49,6 +53,11 @@ public class Aplicacao {
 		tela.setVisible(true);
 	}
 	
+	/**
+	 * Retorna quantos dias úteis existem entre agora e a data informada
+	 * @param data - a data limite
+	 * @return int - a quantidade de dias úteis até a data especificada
+	 */
 	private int diasUteisAte(Calendar data) {
 		int contagem = 0;
 		dias = 0;
@@ -64,6 +73,11 @@ public class Aplicacao {
 		return contagem;
 	}
 	
+	/**
+	 * Retorna se a data passada como parâmetro é um dia útil ou não
+	 * @param data - a data a ser verificada
+	 * @return boolean - true se for um dia útil, false caso não
+	 */
 	private boolean diaUtil(Calendar data) {
 		// Verificar se é um sábado
 		if (data.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
@@ -85,6 +99,9 @@ public class Aplicacao {
 		return true;
 	}
 	
+	/**
+	 * Retorna um array com todos os feriados ao longo do ano
+	 */
 	private ArrayList<Calendar> datasFeriados() {
 		ArrayList<Calendar> feriados = new ArrayList<>();
 		
@@ -102,6 +119,5 @@ public class Aplicacao {
 		feriados.add(new GregorianCalendar(0, 11, 25));
 		
 		return feriados;
-		
 	}
 }
