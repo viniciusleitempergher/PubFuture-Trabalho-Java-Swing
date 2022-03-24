@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import logica.Aplicacao;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
@@ -98,8 +99,22 @@ public class TelaInicial extends JFrame {
 		JButton btnCalcular = new JButton("Calcular!");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double valor = Double.parseDouble(
-						txtValor.getText());
+				double valor = -1;
+				boolean valido = true;
+				
+				try {
+					valor = Double.parseDouble(
+							txtValor.getText());
+				} catch (Exception err) {
+					valido = false;
+				}
+				
+				if (valor < 0) valido = false;
+				if (!valido) {
+					JOptionPane.showMessageDialog(null, "Valor inválido!");
+					return;
+				}
+				
 				
 				int opcao = Integer.parseInt(
 						group.getSelection().getActionCommand());
